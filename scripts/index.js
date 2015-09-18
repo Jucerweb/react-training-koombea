@@ -1,5 +1,6 @@
 var React = require('react');
 var App = require("./components/app");
 
-var app = React.createFactory(App);
-module.exports = React.render(app(), document.getElementById('container'));
+import lista from './lista.json';
+var {people} = lista;
+module.exports = React.render(<App trabajadores={people}/>, document.getElementById('container'));

@@ -1,15 +1,30 @@
-var React = require('react');
-var lista = require('../lista.json').people;
-
-var {ul, li, h1, div, b} = React.DOM;
-
-var app = React.createClass({
+import React from 'react';
+var ListaItem = React.createClass({
+  displayName: 'ListaItem',
+  render(){
+    var {firstName, lastName, role} = this.props;
+    return(
+      <li>
+        { `${ firstName} ${lastName}`}  <b> {`${role}`} </b>
+      </li>
+    );
+  }
+});
+var Lista = React.createClass({
+  displayName: 'Lista',
 	render() {
+    var {trabajadores} = this.props,
+    items = trabajadores.map((trabajador, idx) => {
+      return (
+        <ListaItem {...trabajador} key={idx} />
+      );
+    })
 		return(
-     div({},
-      h1({}, "El equipo de Koombea"))
-		);
+      <ul>
+        {items}
+      </ul>
+    );
 	}
 });
 
-module.exports = app;
+export default Lista;
